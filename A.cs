@@ -1,14 +1,15 @@
-
 using System;
 namespace ObjectOriented;
-public abstract class person{
+public  class person{
     public string Name;
     public int Age;
     public person (string name, int age){
         Name =name;
         Age =age;
     }
-    public abstract void print();
+   public virtual void print(){
+    Console.WriteLine($"My name is {Name},my age is {Age}");
+   }
     
 }
 public class Student :person {
@@ -18,7 +19,7 @@ public class Student :person {
         Year =year;
         Gpa=gpa;
     }
-    public override void print (){
+    public override void print(){
         Console.WriteLine($"My name is {Name},my age is {Age},and gpa is {Gpa}");
             }
 
@@ -30,7 +31,7 @@ public class Staff :person {
         Salary=salary;
         Joinyear=joinyear;
     }
-    public override void print (){
+    public override void print(){
         Console.WriteLine($"My name is {Name},my age is {Age},and salary is {Salary}");
             }
 
@@ -46,6 +47,10 @@ public class Database{
        people[index]=staff;
          index++;
     } 
+     public void addperson(person per){
+       people[index]=per;
+         index++;
+    } 
     
     public  void print(){
         for(int i=0;i<=index;i++){
@@ -59,7 +64,7 @@ public class program {
     public static void Main (){
         Database data=new Database();
         while (true)
-        {Console.WriteLine("Enter \n1 to add a student\n2 to add a staff \n3 to print out all people stored");
+        {Console.WriteLine("Enter \n1 to add a student\n2 to add a staff \n3 to add person\n4 to print out all people stored");
         var n=Convert.ToInt32(Console.ReadLine());
         if(n==1)
         {   Console.WriteLine("Name :");
@@ -90,10 +95,23 @@ public class program {
 
 
         } 
-         else if (n==3){
+        else if(n==3){
+            Console.WriteLine("Name :");
+            var name=Console.ReadLine();
+            Console.WriteLine("Age :");
+            var age=Convert.ToInt32(Console.ReadLine());
+            var per=new person(name,age);
+             data.addperson(per);
+           Console.WriteLine("Stored successfully");
+
+
+        }
+         else if (n==4){
          data.print();
     
          }}
        
+    }
+    }
     }
     }
