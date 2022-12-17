@@ -4,7 +4,13 @@ public  class person{
     public string Name;
     public int Age;
     public person (string name, int age){
+        if(name==null||name==""||name.Length>=32)
+        throw new Exception("Invalid name");
+        if(age<=0||age>128)
+        throw new Exception("Invalid age");
+
         Name =name;
+
         Age =age;
     }
    public virtual void print(){
@@ -16,6 +22,10 @@ public class Student :person {
     public int Year;
     public float Gpa;
     public Student (string name,int age ,int year,float gpa) :base(name,age){
+        if(year<1||year>5)
+         throw new Exception("Invalid year");
+         if(gpa<0||gpa>4)
+          throw new Exception("Invalid gpa");
         Year =year;
         Gpa=gpa;
     }
@@ -28,6 +38,10 @@ public class Staff :person {
     public double Salary;
     public int Joinyear;
     public Staff (string name,int age ,double salary,int joinyear) :base(name,age){
+        if(salary<=0||salary>120000)
+         throw new Exception("Invalid salary");
+         if(joinyear-age!=21)
+          throw new Exception("Invalid joinyear");
         Salary=salary;
         Joinyear=joinyear;
     }
@@ -111,7 +125,5 @@ public class program {
     
          }}
        
-    }
-    }
     }
     }
